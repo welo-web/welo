@@ -1,0 +1,43 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class SubscriptionFormTest extends TestCase
+{
+    use RefreshDatabase;
+
+    /** @test */
+    public function it_can_display_the_subscription_form()
+    {
+        $response = $this->get('/subscribe');
+
+        $response->assertStatus(200);
+        $response->assertSee('نموذج طلب الاشتراك');
+    }
+
+    /** @test */
+    public function it_can_submit_the_subscription_form()
+    {
+        $response = $this->post('/subscribe', [
+            'name' => 'John Doe',
+            'phone' => '123456789',
+            'business' => 'Test Business',
+            'plan' => 'Basic Plan',
+            'subscriptionType' => 'شهري',
+            'price' => '100',
+        ]);
+
+        $response->assertRedirect('/subscribe');
+        $this->assertDatabaseHas('subscriptions', [
+            'name' => 'John Doe',
+            'phone' => '123456789',
+            'business' => 'Test Business',
+            'plan' => 'Basic Plan',
+            'subscriptionType' => 'شهري',
+            'price' => '100',
+        ]);
+    }
+}

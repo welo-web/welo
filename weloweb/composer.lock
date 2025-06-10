@@ -1,0 +1,9 @@
+{
+    "content": {
+        "packages": [],
+        "content-hash": "d41d8cd98f00b204e9800998ecf8427e",
+        "platforms": {
+            "php": ">=7.3.0"
+        }
+    }
+}

@@ -1,0 +1,19 @@
+The directory app/Http/Middleware is intended to contain middleware classes that filter HTTP requests entering the application. Since you have not specified any particular middleware to create, I will provide a basic structure for a middleware class.
+
+Here is the content for the file app/Http/Middleware/ExampleMiddleware.php:
+
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class ExampleMiddleware
+{
+    public function handle($request, Closure $next)
+    {
+        // Perform some action before the request is handled
+
+        return $next($request);
+    }
+}
