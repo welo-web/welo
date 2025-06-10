@@ -115,3 +115,7 @@ Route::get('/blog', function () {
 
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+
+
+Route::get('/subscribe', [SubscribeController::class, 'showDynamicForm'])->name('subscribe.form');
+Route::post('/subscribe', [SubscribeController::class, 'submitDynamicForm'])->name('subscribe.submit');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\SubscribeController;
 
 class SubscribeController extends Controller
 {
@@ -66,5 +67,18 @@ class SubscribeController extends Controller
         ]);
 
         return redirect('/')->with('success', 'تم إرسال الاشتراك بنجاح!');
+    }
+
+    public function showDynamicForm()
+    {
+        return view('subscribe_form_dynamic_v2');
+    }
+
+    public function submitDynamicForm(Request $request)
+    {
+        // معالجة الطلب - يمكنك تعديلها حسب الحاجة
+        // return dd($request->all());
+
+        return back()->with('success', 'تم إرسال طلب الاشتراك بنجاح!');
     }
 }
