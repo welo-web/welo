@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\SubscribeController;
+use App\Models\Subscribe;
+use App\Models\Service;
+use App\Models\Plan;
 
 class SubscribeController extends Controller
 {
@@ -71,7 +74,9 @@ class SubscribeController extends Controller
 
     public function showDynamicForm()
     {
-        return view('subscribe_form_dynamic_v2');
+        $services = Service::all();
+        $plans = Plan::with('service')->get();
+        return view('subscribe_form_dynamic_v2', compact('services', 'plans'));
     }
 
     public function submitDynamicForm(Request $request)
@@ -80,5 +85,21 @@ class SubscribeController extends Controller
         // return dd($request->all());
 
         return back()->with('success', 'تم إرسال طلب الاشتراك بنجاح!');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name'    => 'required|string',
+            'phone'   => 'required|string',
+            'project' => 'nullable|string',
+            'plan'    => 'nullable|string',
+            'billing' => 'nullable|string',
+            'price'   => 'nullable|string',
+        ]);
+
+        Subscribe::create($data);
+
+        return redirect()->back()->with('success', 'تم إرسال طلب الاشتراك بنجاح!');
     }
 }
