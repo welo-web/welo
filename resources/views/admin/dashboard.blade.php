@@ -8,85 +8,97 @@
 </head>
 <body>
   <div class="container py-5">
-    @extends('admin.layout')
+    @extends('layouts.admin')
 
     @section('title', 'لوحة التحكم')
 
     @section('content')
-      <h2 class="mb-4">الإحصائيات العامة</h2>
+    <div class="container-fluid">
+        <h1 class="h3 mb-4">لوحة التحكم</h1>
 
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card text-center shadow">
-            <div class="card-body">
-              <h5 class="card-title">عدد المستخدمين</h5>
-              <h2>{{ $usersCount }}</h2>
+        <!-- الإحصائيات -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">إجمالي الخدمات</h5>
+                        <h2 class="card-text">{{ $stats['total_services'] }}</h2>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">الخدمات النشطة</h5>
+                        <h2 class="card-text">{{ $stats['active_services'] }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">إجمالي الاشتراكات</h5>
+                        <h2 class="card-text">{{ $stats['total_subscriptions'] }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">الاشتراكات المعلقة</h5>
+                        <h2 class="card-text">{{ $stats['pending_subscriptions'] }}</h2>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-3">
-          <div class="card text-center shadow">
-            <div class="card-body">
-              <h5 class="card-title">عدد الخدمات</h5>
-              <h2>{{ $servicesCount }}</h2>
+        <!-- الاشتراكات الأخيرة -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">آخر الاشتراكات</h5>
             </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card text-center shadow">
             <div class="card-body">
-              <h5 class="card-title">عدد المقالات</h5>
-              <h2>{{ $blogCount }}</h2>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>العميل</th>
+                                <th>الخدمة</th>
+                                <th>نوع الباقة</th>
+                                <th>السعر</th>
+                                <th>الحالة</th>
+                                <th>تاريخ الطلب</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($recent_subscriptions as $subscription)
+                            <tr>
+                                <td>{{ $subscription->id }}</td>
+                                <td>{{ $subscription->customer_name }}</td>
+                                <td>{{ $subscription->service->name }}</td>
+                                <td>{{ $subscription->plan_type_text }}</td>
+                                <td>{{ number_format($subscription->price, 2) }} ريال</td>
+                                <td>
+                                    <span class="badge bg-{{ $subscription->status === 'active' ? 'success' : ($subscription->status === 'pending' ? 'warning' : 'danger') }}">
+                                        {{ $subscription->status_text }}
+                                    </span>
+                                </td>
+                                <td>{{ $subscription->created_at->format('Y-m-d H:i') }}</td>
+                                <td>
+                                    <a href="{{ route('admin.subscriptions.show', $subscription) }}" class="btn btn-sm btn-info">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="col-md-3">
-          <div class="card text-center shadow">
-            <div class="card-body">
-              <h5 class="card-title">آخر تحديث</h5>
-              <h2>{{ $latestUpdate }}</h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card text-center shadow">
-            <div class="card-body">
-              <h5 class="card-title">طلبات الاشتراك</h5>
-              <h2>{{ $subscribeCount }}</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="mt-5 mb-3">إضافة طلب اشتراك جديد</h3>
-      <form method="POST" action="{{ route('subscribe.store') }}">
-          @csrf
-          <div class="mb-3">
-              <label for="name" class="form-label">الاسم</label>
-              <input type="text" class="form-control" id="name" name="name" required>
-          </div>
-
-          <div class="mb-3">
-              <label for="buisness" class="form-label">الشركة</label>
-              <input type="text" class="form-control" id="buisness" name="buisness">
-          </div>
-
-          <div class="mb-3">
-              <label for="phone" class="form-label">رقم الهاتف</label>
-              <input type="text" class="form-control" id="phone" name="phone">
-          </div>
-
-          <div class="mb-3">
-              <label for="service" class="form-label">الخدمة</label>
-              <input type="text" class="form-control" id="service" name="service">
-          </div>
-
-          <button type="submit" class="btn btn-primary">إضافة البيانات</button>
-      </form>
+    </div>
     @endsection
   </div>
 </body>

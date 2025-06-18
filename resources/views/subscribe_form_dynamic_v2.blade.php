@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-    <form method="POST" action="{{ route('subscribe.store') }}">
+    <form method="POST" action="{{ route('subscriptions.store') }}">
         @csrf
 
                         <div class="form-group row mb-3">

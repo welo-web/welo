@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ويلو ويب - الحلول الرقمية المتكاملة لجميع أنواع الأعمال">
   <title>ويلو ويب - الحلول الرقمية</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Cairo', Arial, sans-serif;
@@ -40,21 +41,32 @@
     .btn-primary {
       background-color: #0d6efd;
       border-color: #0d6efd;
-      transition: background-color 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
     .btn-primary:hover {
       background-color: #0b5ed7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(13,110,253,0.2);
     }
     .navbar {
-      background-color: transparent;
-      position: absolute;
+      background-color: rgba(255, 255, 255, 0.95);
+      position: fixed;
       width: 100%;
       z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      background-color: #fff;
     }
     .navbar-nav .nav-link {
       margin: 0 1rem;
       font-weight: 500;
       font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #0d6efd;
     }
     .hero {
       background: url('/images/hero-bg.jpg') center center / cover no-repeat;
@@ -77,53 +89,65 @@
     .hero h1 {
       font-size: 2.2rem;
       font-weight: bold;
+      margin-bottom: 1rem;
     }
     .hero p {
       font-size: 1.1rem;
+      margin-bottom: 2rem;
     }
     .btn-custom {
       min-width: 120px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
     }
     .services-section {
       margin-top: -40px;
       background: #fff;
       border-radius: 20px;
       padding: 40px 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
     .service-card {
       text-align: center;
-      padding: 18px;
+      padding: 25px;
       border: 1px solid #eee;
-      border-radius: 10px;
-      transition: 0.5s ease;
+      border-radius: 15px;
+      transition: all 0.3s ease;
       background: #fff;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
     .service-card i {
       font-size: 32px;
       color: #0d6efd;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
     .business-types {
       background: #fff;
-      padding: 25px 10px;
+      padding: 30px 15px;
       border-radius: 20px;
       margin-top: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
     .business-types .item {
       border: 1px solid #eee;
-      padding: 14px;
-      border-radius: 10px;
+      padding: 15px;
+      border-radius: 12px;
       font-size: 1rem;
-      transition: 0.3s;
+      transition: all 0.3s ease;
       background-color: #fefefe;
     }
     .business-types .item:hover {
-      background-color: #f1f1f1;
+      background-color: #f8f9fa;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     .client-img {
       width: 100%;
@@ -132,7 +156,7 @@
       object-fit: cover;
       border-radius: 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      transition: transform 0.4s cubic-bezier(.4,2,.3,1), box-shadow 0.4s;
+      transition: all 0.4s cubic-bezier(.4,2,.3,1);
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -165,41 +189,43 @@
     }
     @media (max-width: 768px) {
       .navbar-collapse {
-        position: absolute !important;
-        top: 100%;
-        left: 0;
-        width: 100%;
         background-color: white;
+        padding: 1rem;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      .hero {
+        padding: 200px 0 80px;
       }
     }
     @media (max-width: 575.98px) {
       .hero {
-        padding: 50px 0 30px;
+        padding: 150px 0 50px;
       }
       .hero h1 {
-        font-size: 1.1rem;
+        font-size: 1.8rem;
       }
       .services-section {
-        padding: 10px 1px;
-        margin-top: -8px;
+        padding: 20px 1px;
+        margin-top: -10px;
       }
       .business-types {
-        padding: 5px 1px;
+        padding: 15px 1px;
       }
       .section-title-box {
-        font-size: 0.95rem;
-        min-width: 90px;
-        padding: 4px 0 2px 0;
+        font-size: 1.1rem;
+        min-width: 120px;
+        padding: 6px 0 4px 0;
       }
       .client-img {
-        max-width: 32px;
-        height: 32px;
+        max-width: 40px;
+        height: 40px;
       }
       .service-card {
-        padding: 10px;
+        padding: 15px;
       }
       .service-card i {
-        font-size: 22px;
+        font-size: 24px;
       }
     }
     .spacer {
@@ -209,20 +235,21 @@
 </head>
 <body>
   <!-- شريط علوي جديد متجاوب -->
-  <nav class="navbar navbar-expand-lg bg-light fixed-top">
-    <div class="container-fluid">
-      <img src="/images/logo.png" alt="WeloWeb" style="height: 50px; margin-left: 25px;">
-      <span style="font-weight:bold; letter-spacing:0; font-size:1.3rem;">
-        <span class="text-primary">WELO</span>WEB
-      </span>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="/images/logo.png" alt="WeloWeb" style="height: 50px; margin-left: 15px;">
+        <span style="font-weight:bold; letter-spacing:0; font-size:1.3rem;">
+          <span class="text-primary">WELO</span>WEB
+        </span>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse position-absolute top-100 start-0 w-100 bg-white shadow-sm" id="mainMenu" style="z-index: 1050;">
-        <ul class="navbar-nav text-center w-100">
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto text-center">
           <li class="nav-item"><a class="nav-link" href="/user-guide">الخدمات والاسعار</a></li>
           <li class="nav-item"><a class="nav-link" href="/subscribe">الاشتراك</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact">تواصل معنا</a></li>
           <li class="nav-item"><a class="nav-link" href="/blog">مدونة</a></li>
           <li class="nav-item"><a class="nav-link" href="/faq">الأسئلة الشائعة</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact">تواصل معنا</a></li>
@@ -231,7 +258,6 @@
       </div>
     </div>
   </nav>
-  <!-- نهاية الشريط العلوي الجديد -->
 
   <!-- قسم المقدمة -->
   <section class="hero">
@@ -239,7 +265,7 @@
       <h1 class="mt-4">حلول برمجية ورقمية متكاملة</h1>
       <p class="mb-4">نقدم خدمات برمجية وحلول مبتكرة ومخصصة تناسب أنواع الأعمال المختلفة</p>
       <div class="d-flex justify-content-center gap-3 flex-wrap">
-        <a href="/user-guide" class="btn btn-primary btn-custom">خدماتنا </a>
+        <a href="/user-guide" class="btn btn-primary btn-custom">خدماتنا</a>
         <a href="https://wa.me/96894919627" class="btn btn-outline-light btn-custom">تواصل معنا</a>
       </div>
     </div>
@@ -249,48 +275,65 @@
   <div class="spacer"></div>
 
   <!-- قسم الخدمات -->
-  <section class="services-section container" id="services">
-    <div class="section-title-box">خدماتنا</div>
-    <div class="row g-4">
-      <div class="col-md-4 col-12" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-card">
-          <i class="fas fa-file-invoice-dollar"></i>
-          <h5 class="my-3">أنظمة المحاسبة ونقاط البيع</h5>
-          <p>أنظمة دقيقة لإدارة محاسبة منشأتك بكل سهولة واحترافية.</p>
-          <a href="/subscribe?service=أنظمة%20المحاسبة" class="btn btn-sm btn-primary">اشترك الآن</a>
+  <section class="services-section">
+    <div class="container">
+      <div class="section-title-box mb-4">خدماتنا</div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="service-card">
+            <i class="fas fa-store"></i>
+            <h3>متاجر إلكترونية</h3>
+            <p>نقدم حلول متكاملة للمتاجر الإلكترونية مع نظام إدارة المخزون والطلبات</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 col-12" data-aos="fade-up" data-aos-delay="200">
-        <div class="service-card">
-          <i class="fas fa-cash-register"></i>
-          <h5 class="my-3">انشاء موقع ومتجر الكتروني</h5>
-          <p>واجهة الكترونية تعكس هويتك البصرية وعمليات بيع احترافية</p>
-          <a href="/subscribe?service=نقاط%20البيع" class="btn btn-sm btn-primary">اشترك الآن</a>
+        <div class="col-md-4">
+          <div class="service-card">
+            <i class="fas fa-utensils"></i>
+            <h3>مطاعم وكافيهات</h3>
+            <p>نظام إدارة المطاعم مع طلبات الطاولة والطلب عبر الإنترنت</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 col-12" data-aos="fade-up" data-aos-delay="300">
-        <div class="service-card">
-          <i class="fas fa-tools"></i>
-          <h5 class="my-3">أنظمة إدارة خدمات</h5>
-          <p>إدارة خدمات العملاء والمواعيد والصيانة بكفاءة ومرونة.</p>
-          <a href="/subscribe?service=إدارة%20الخدمات" class="btn btn-sm btn-primary">اشترك الآن</a>
+        <div class="col-md-4">
+          <div class="service-card">
+            <i class="fas fa-cut"></i>
+            <h3>صالونات تجميل</h3>
+            <p>إدارة المواعيد والحجوزات مع نظام الولاء والعروض</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- قسم المشاريع التي نخدمها -->
-  <section class="business-types container mt-4">
-    <div class="section-title-box">المشاريع التي نخدمها</div>
-    <div class="row g-3 text-center">
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">💇‍♀️ صالون نسائي</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">👗 بوتيك نسائي</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">🧺 مغسلة ملابس</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">🍽️ مطاعم</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">🏪 محلات تجارية</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">🏥 مستشفيات</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">🏫 مدارس</div></div>
-      <div class="col-6 col-md-3" data-aos="zoom-in"><div class="item">🏢 مكاتب الأيدي العاملة</div></div>
+  <!-- قسم أنواع الأعمال -->
+  <section class="business-types">
+    <div class="container">
+      <div class="section-title-box mb-4">نخدم جميع أنواع الأعمال</div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <div class="item">مطاعم</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">كافيهات</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">صالونات تجميل</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">محلات ملابس</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">مغاسل</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">مدارس</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">عيادات</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="item">متاجر</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -372,7 +415,22 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init();
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
   </script>
 </body>
 </html>

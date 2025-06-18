@@ -2,100 +2,212 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>دليل نظام المطاعم - ويلو ويب</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <title>نظام المطاعم - ويلو ويب</title>
+  <meta name="description" content="نظام إدارة المطاعم المتكامل من ويلو ويب - إدارة الطلبات، المخزون، الموظفين والمبيعات">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #f8f9fa;
-      font-family: 'Cairo', sans-serif;
-    }
-    h2, h4 {
-      color: #343a40;
-    }
-    ul li {
-      margin-bottom: 8px;
-    }
-    .navbar, .navbar * { font-family: 'Cairo', Tahoma, Arial, sans-serif !important; }
-    .navbar-nav .nav-link { font-size: 1.15rem !important; font-weight: 500; }
-    .navbar-brand, .navbar span { font-size: 1.5rem !important; }
-    .navbar-spacer { height: 110px; }
-    @media (max-width: 991.98px) {
-      .navbar-spacer { height: 85px; }
-      .navbar .container { max-width: 100% !important; }
-    }
-    @media (max-width: 575.98px) {
-      .navbar-spacer { height: 65px; }
-      .navbar .container { max-width: 100% !important; }
-    }
+    body { font-family: 'Tajawal', sans-serif; background-color: #f8f9fa; }
+    .navbar { background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar-brand { font-weight: 700; color: #0d6efd; }
+    .nav-link { color: #333; font-weight: 500; }
+    .nav-link:hover { color: #0d6efd; }
+    .hero-section { background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); color: white; padding: 4rem 0; margin-bottom: 3rem; }
+    .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: 1.2rem; opacity: 0.9; }
+    .feature-card { background: white; border-radius: 10px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-icon { font-size: 2.5rem; color: #0d6efd; margin-bottom: 1rem; }
+    .feature-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+    .feature-description { color: #6c757d; line-height: 1.6; }
+    .pricing-toggle { text-align: center; margin-bottom: 2rem; }
+    .pricing-toggle .btn-group { background: #f8f9fa; padding: 5px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .pricing-toggle .btn { border: none; padding: 8px 20px; border-radius: 25px; font-weight: 500; }
+    .pricing-toggle .btn.active { background: #0d6efd; color: white; }
+    .pricing-toggle .savings-badge { background: #198754; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.9rem; margin-right: 10px; }
+    .pricing-card { background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
+    .pricing-card:hover { transform: translateY(-5px); }
+    .pricing-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #333; }
+    .pricing-price { font-size: 2rem; font-weight: bold; margin: 1rem 0; color: #0d6efd; }
+    .pricing-price .original { text-decoration: line-through; color: #6c757d; font-size: 1.2rem; margin-left: 10px; }
+    .pricing-period { color: #6c757d; margin-bottom: 1.5rem; }
+    .pricing-features { list-style: none; padding: 0; margin: 0 0 2rem 0; }
+    .pricing-features li { padding: 0.5rem 0; color: #495057; }
+    .pricing-features i { color: #198754; margin-left: 0.5rem; }
+    .btn-subscribe { display: inline-block; padding: 0.8rem 2rem; background: #0d6efd; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: background-color 0.3s ease; width: 100%; text-align: center; }
+    .btn-subscribe:hover { background: #0b5ed7; color: white; }
+    .contact-section { background: white; padding: 4rem 0; margin-top: 3rem; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .contact-title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #333; }
+    .contact-description { color: #6c757d; margin-bottom: 2rem; }
+    .contact-button { display: inline-block; padding: 1rem 2rem; background: #0d6efd; color: white; text-decoration: none; border-radius: 25px; font-weight: 500; transition: background-color 0.3s ease; }
+    .contact-button:hover { background: #0b5ed7; color: white; }
+    @media (max-width: 768px) { .hero-title { font-size: 2rem; } .hero-subtitle { font-size: 1rem; } .navbar .container { max-width: 100% !important; } }
   </style>
 </head>
 <body>
-<!-- شريط علوي جديد متجاوب -->
-<nav class="navbar navbar-expand-lg bg-light fixed-top" style="font-family: 'Cairo', Tahoma, Arial, sans-serif;">
-  <div class="container justify-content-between" style="max-width: 900px;">
-    <div class="d-flex align-items-center">
-      <img src="/images/logo.png" alt="WeloWeb" style="height: 50px; margin-left: 10px;">
-      <span style="font-weight:bold; letter-spacing:0; font-size:1.5rem;">
-        <span class="text-primary">WELO</span>WEB
-      </span>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">ويلو ويب</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="/services">خدماتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="/subscribe">الاشتراك</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blog">المدونة</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">اتصل بنا</a></li>
+        </ul>
+      </div>
     </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainMenu">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="/user-guide">الخدمات والاسعار</a></li>
-        <li class="nav-item"><a class="nav-link" href="/subscribe">الاشتراك</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contact">تواصل معنا</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog">مدونة</a></li>
-        <li class="nav-item"><a class="nav-link" href="/faq">الأسئلة الشائعة</a></li>
-        <li class="nav-item"><a class="nav-link" href="/privacy">سياسة الخصوصية</a></li>
-      </ul>
+  </nav>
+
+  <div class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">نظام إدارة المطاعم</h1>
+      <p class="hero-subtitle">حل متكامل لإدارة مطعمك بكفاءة عالية</p>
     </div>
   </div>
-</nav>
-<!-- نهاية الشريط العلوي الجديد -->
 
-<!-- إضافة مسافة ديناميكية بين الشريط العلوي والعنوان -->
-<div class="navbar-spacer"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="feature-card">
+          <i class="fas fa-utensils feature-icon"></i>
+          <h3 class="feature-title">إدارة الطلبات</h3>
+          <p class="feature-description">إدارة الطلبات والمبيعات اليومية بكفاءة</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-card">
+          <i class="fas fa-box feature-icon"></i>
+          <h3 class="feature-title">إدارة المخزون</h3>
+          <p class="feature-description">إدارة دقيقة للمخزون والمشتريات</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-card">
+          <i class="fas fa-users feature-icon"></i>
+          <h3 class="feature-title">إدارة الموظفين</h3>
+          <p class="feature-description">إدارة شؤون الموظفين والرواتب</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-card">
+          <i class="fas fa-chart-line feature-icon"></i>
+          <h3 class="feature-title">التقارير</h3>
+          <p class="feature-description">تقارير تفصيلية عن المبيعات والأرباح</p>
+        </div>
+      </div>
+    </div>
 
-<div class="container py-5">
-  <h2 class="mb-4 text-center">📘 دليل استخدام نظام إدارة المطاعم</h2>
+    <div class="pricing-toggle">
+      <div class="btn-group">
+        <button class="btn active" data-period="monthly">شهري</button>
+        <button class="btn" data-period="yearly">
+          سنوي
+          <span class="savings-badge">وفر 20%</span>
+        </button>
+      </div>
+    </div>
 
-  <p>يقدم نظام المطاعم المقدم من ويلو ويب حلاً متكاملاً ومرنًا لإدارة جميع عمليات التشغيل اليومية بدقة وسهولة:</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h3 class="pricing-title">الباقة الأساسية</h3>
+          <div class="pricing-price">
+            <span class="monthly-price">199 ريال</span>
+            <span class="yearly-price" style="display: none">1,910 ريال</span>
+            <span class="original yearly-price" style="display: none">2,388 ريال</span>
+          </div>
+          <div class="pricing-period">شهرياً</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> إدارة الطلبات</li>
+            <li><i class="fas fa-check"></i> إدارة القائمة</li>
+            <li><i class="fas fa-check"></i> التقارير الأساسية</li>
+          </ul>
+          <a href="{{ route('subscriptions.create', ['service' => 'restaurant', 'plan' => 'basic']) }}" class="btn-subscribe">اشترك الآن</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h3 class="pricing-title">الباقة المتقدمة</h3>
+          <div class="pricing-price">
+            <span class="monthly-price">399 ريال</span>
+            <span class="yearly-price" style="display: none">3,830 ريال</span>
+            <span class="original yearly-price" style="display: none">4,788 ريال</span>
+          </div>
+          <div class="pricing-period">شهرياً</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> كل مميزات الباقة الأساسية</li>
+            <li><i class="fas fa-check"></i> إدارة المخزون</li>
+            <li><i class="fas fa-check"></i> إدارة الموظفين</li>
+            <li><i class="fas fa-check"></i> التقارير المتقدمة</li>
+          </ul>
+          <a href="{{ route('subscriptions.create', ['service' => 'restaurant', 'plan' => 'advanced']) }}" class="btn-subscribe">اشترك الآن</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pricing-card">
+          <h3 class="pricing-title">الباقة الاحترافية</h3>
+          <div class="pricing-price">
+            <span class="monthly-price">599 ريال</span>
+            <span class="yearly-price" style="display: none">5,750 ريال</span>
+            <span class="original yearly-price" style="display: none">7,188 ريال</span>
+          </div>
+          <div class="pricing-period">شهرياً</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> كل مميزات الباقة المتقدمة</li>
+            <li><i class="fas fa-check"></i> إدارة الفروع</li>
+            <li><i class="fas fa-check"></i> تطبيق الموبايل</li>
+            <li><i class="fas fa-check"></i> دعم فني متميز</li>
+          </ul>
+          <a href="{{ route('subscriptions.create', ['service' => 'restaurant', 'plan' => 'professional']) }}" class="btn-subscribe">اشترك الآن</a>
+        </div>
+      </div>
+    </div>
 
-  <ul>
-    <li>📦 إدارة دقيقة للمخزون والمخزون التالف</li>
-    <li>📑 إدارة الموردين والمشتريات، مع تتبع المبالغ المدفوعة والمتبقية</li>
-    <li>💰 تسجيل المبيعات اليومية عن طريق نقاط البيع POS</li>
-    <li>🧑‍💻 دعم نظام الجلسات لكل مستخدم مع تقارير مخصصة</li>
-    <li>☁️ البرنامج يعمل سحابيًا أو محليًا دون الحاجة للإنترنت</li>
-    <li>👥 عدد غير محدود من المستخدمين</li>
-    <li>🌍 يدعم اللغة العربية والإنجليزية</li>
-    <li>📊 إمكانية إضافة الضرائب، القيمة المضافة، والخصومات</li>
-    <li>🎁 نظام نقاط الولاء وتحديد صلاحية العروض بالوقت</li>
-    <li>🧾 إدارة كاملة لبيانات العملاء، فواتيرهم ومدفوعاتهم</li>
-    <li>🧑‍🍳 إدارة الموظفين، مناوباتهم، وتقارير مبيعاتهم</li>
-    <li>💵 دعم إدارة الرواتب والمصروفات (قريبًا)</li>
-    <li>🏬 دعم تعدد المستودعات والفروع</li>
-    <li>🔔 إشعارات مخصصة للإدارة (قريبًا)</li>
-    <li>🍽️ تطبيق خاص للنادل عبر التابلت</li>
-    <li>📈 تقارير تفصيلية للمبيعات، العملاء، المنتجات، والربح والخسارة</li>
-    <li>🗓️ تقارير يومية وشهرية شاملة</li>
-    <li>💵 إمكانية تعديل الأسعار مباشرة من شاشة الكاشير</li>
-  </ul>
-
-  <hr class="my-5">
-
-  <h4 class="mb-3">🎥 فيديو توضيحي:</h4>
-  <div class="ratio ratio-16x9">
-    <iframe src="https://www.youtube.com/embed/ijuGBsYQkSw" title="فيديو شرح نظام المطاعم" allowfullscreen></iframe>
+    <div class="contact-section text-center">
+      <h2 class="contact-title">هل تحتاج إلى مساعدة في اختيار الباقة المناسبة؟</h2>
+      <p class="contact-description">فريقنا جاهز لمساعدتك في اختيار الباقة التي تناسب احتياجاتك</p>
+      <a href="/contact" class="contact-button">اتصل بنا</a>
+    </div>
   </div>
-</div>
 
-<!-- Bootstrap JS (مع Popper) ضروري لعمل القائمة المنسدلة في الجوال -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleButtons = document.querySelectorAll('.pricing-toggle .btn');
+      const monthlyPrices = document.querySelectorAll('.monthly-price');
+      const yearlyPrices = document.querySelectorAll('.yearly-price');
+      const pricingPeriods = document.querySelectorAll('.pricing-period');
+
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          toggleButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+
+          const period = this.dataset.period;
+          
+          // Toggle prices
+          monthlyPrices.forEach(price => {
+            price.style.display = period === 'monthly' ? 'inline' : 'none';
+          });
+          yearlyPrices.forEach(price => {
+            price.style.display = period === 'yearly' ? 'inline' : 'none';
+          });
+
+          // Update period text
+          pricingPeriods.forEach(periodEl => {
+            periodEl.textContent = period === 'monthly' ? 'شهرياً' : 'سنوياً';
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
