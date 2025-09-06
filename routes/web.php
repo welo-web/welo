@@ -36,6 +36,14 @@ Route::get('/', function () {
     return view('weloweb_home');
 });
 
+Route::get('/hello', function () {
+    return response()->json(['message' => 'مرحبا']);
+})->name('hello');
+
+Route::get('/hello-page', function () {
+    return view('hello');
+})->name('hello.page');
+
 Route::get('/subscribe', [SubscribeController::class, 'showDynamicForm'])->name('subscribe.form');
 Route::post('/subscribe', [SubscribeController::class, 'store'])->name('subscribe.store');
 
